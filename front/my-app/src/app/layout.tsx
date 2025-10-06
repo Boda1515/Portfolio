@@ -28,7 +28,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white`}>
         {/* Navigation */}
         <header className="sticky top-4 z-10 flex justify-center">
           <GooeyNav
@@ -52,7 +52,7 @@ export default function RootLayout({
         </header>
 
         {/* Page content */}
-        <main className="mx-auto max-w-5xl px-4">{children}</main>
+        <main className="mx-auto w-[90%] px-4">{children}</main>
 
         {/* Footer */}
         <footer className="mt-16 border-t border-black/10 dark:border-white/10">
@@ -73,7 +73,7 @@ export default function RootLayout({
                 rel="noreferrer"
                 className="hover:underline"
               >
-                instagram
+                instagram 
               </a>
               <a
                 href="https://www.linkedin.com/in/abdelrahman-hany-cloud-data-engineer/"

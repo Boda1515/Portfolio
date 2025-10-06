@@ -27,7 +27,7 @@ export default function AboutSection() {
         />
       </div>
 
-      <div className="mx-auto max-w-5xl px-4"> {/* narrower container to suit the page */}
+      <div className="mx-auto w-[90%] px-4"> {/* narrower container to suit the page */}
         <h2 className="mb-8 text-center text-3xl md:text-4xl font-semibold text-white">
           About
         </h2>

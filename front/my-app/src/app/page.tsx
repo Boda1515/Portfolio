@@ -105,34 +105,40 @@ export default function Home() {
   return (
     <main className="px-6 sm:px-10">
 
-      <section id="home" className="relative min-h-screen flex flex-col items-center justify-center gap-6 px-6 text-center">
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
-          <Shuffle
-            text="Abdelrahman Hany"
-            shuffleDirection="right"
-            duration={0.35}
-            animationMode="evenodd"
-            shuffleTimes={1}
-            ease="power3.out"
-            stagger={0.03}
-            threshold={0.1}
-            triggerOnce={true}
-            triggerOnHover={true}
-            respectReducedMotion={true}
-          />
-        </h1>
-        <span className="text-sm text-gray-500">
-          <TrueFocus
-            sentence="Cloud & Data"
-            manualMode={false}
-            blurAmount={5}
-            borderColor="blue"
-            animationDuration={0.1}
-            pauseBetweenAnimations={1}
-          />
-          Engineer</span>
+<section
+  id="home"
+  className="relative min-h-screen flex flex-col items-center justify-center gap-6 px-6 text-center"
+>
+  <h1 className="text-[20px] md:text-6xl font-bold tracking-tight">
+    <Shuffle
+      text="Abdelrahman Hany"
+      shuffleDirection="right"
+      duration={0.35}
+      animationMode="evenodd"
+      shuffleTimes={1}
+      ease="power3.out"
+      className="text-[25px] md:text-6xl"
+      stagger={0.03}
+      threshold={0.1}
+      triggerOnce={true}
+      triggerOnHover={true}
+      respectReducedMotion={true}
+    />
+  </h1>
 
-      </section>
+  <span className="text-[17px] md:text-lg text-gray-500">
+    <TrueFocus
+      sentence="Cloud & Data"
+      manualMode={false}
+      blurAmount={5}
+      borderColor="blue"
+      animationDuration={0.1}
+      pauseBetweenAnimations={1}
+    />{" "}
+    Engineer
+  </span>
+</section>
+
 
       <section id="about" className="min-h-[108vh] scroll-mt-28 pt-10 pb-16"> <AboutSection /> </section>
 

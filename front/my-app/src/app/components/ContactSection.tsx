@@ -19,57 +19,47 @@ export default function ContactSection() {
     const message = (data.get("message") as string)?.trim();
     const honeypot = (data.get("company") as string) || ""; // honeypot
 
-    // simple validation
     if (!name || !email || !message) {
       setStatus({ type: "error", message: "Please fill in all required fields." });
       return;
     }
 
-    // basic email check
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setStatus({ type: "error", message: "Please enter a valid email address." });
       return;
     }
 
-    // block bots (honeypot filled)
-    if (honeypot) return;
+    if (honeypot) return; // spam bot trap
 
     setStatus({ type: "sending" });
 
     try {
-      const res = await fetch("/api/contact", {
+      // 🟢 Send directly to Formspree
+      const res = await fetch("https://formspree.io/f/xgvnzbwl", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        headers: { Accept: "application/json" },
+        body: data,
       });
 
-      if (!res.ok) throw new Error("Failed");
-
-      setStatus({ type: "ok", message: "Thanks! I’ll get back to you shortly." });
-      form.reset();
-    } catch {
-      // Fallback: open mail client if API isn’t configured yet
-      const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-      const body = encodeURIComponent(`${message}\n\n— ${name} <${email}>`);
-      window.location.href = `mailto:you@example.com?subject=${subject}&body=${body}`;
-      setStatus({ type: "idle" });
+      if (res.ok) {
+        setStatus({ type: "ok", message: "Thanks! Your message has been sent." });
+        form.reset();
+      } else {
+        const errData = await res.json();
+        throw new Error(errData.error || "Failed to send");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus({ type: "error", message: "Something went wrong. Please try again." });
     }
   }
 
   return (
     <div className="w-full max-w-3xl mx-auto px-6">
       <div className="relative rounded-3xl border border-white/10 bg-black/30 p-6 sm:p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
-        {/* soft inner highlight */}
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.04] to-transparent" />
         <form onSubmit={onSubmit} className="relative grid gap-5">
-          {/* Honeypot */}
-          <input
-            type="text"
-            name="company"
-            tabIndex={-1}
-            autoComplete="off"
-            className="hidden"
-          />
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" />
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Name" htmlFor="name">
@@ -88,8 +78,7 @@ export default function ContactSection() {
             <button
               type="submit"
               disabled={status.type === "sending"}
-              className="inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-medium text-white transition
-                         border border-white/10"
+              className="inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-medium text-white transition border border-white/10"
               style={{
                 background: "rgba(0,191,255,0.15)",
                 borderColor: `${ACCENT}33`,
@@ -113,40 +102,21 @@ export default function ContactSection() {
               <p className="text-sm text-red-400">{status.message}</p>
             )}
 
-            {/* socials on the right */}
             <div className="ml-auto flex items-center gap-3 text-sm">
-              <span
-                // href="abdelrahmanhany536@gmail.com"
-                className="underline-offset-4 hover:opacity-80"
-              >
+              <span className="underline-offset-4 hover:opacity-80">
                 abdelrahmanhany536@gmail.com
               </span>
               <span className="opacity-40">•</span>
-              <a
-                href="https://github.com/Boda1515"
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4 hover:opacity-80"
-              >
+              <a href="https://github.com/Boda1515" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:opacity-80">
                 GitHub
               </a>
               <span className="opacity-40">•</span>
-              <a
-                href="https://www.linkedin.com/in/abdelrahman-hany-cloud-data-engineer/"
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4 hover:opacity-80"
-              >
+              <a href="https://www.linkedin.com/in/abdelrahman-hany-cloud-data-engineer/" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:opacity-80">
                 LinkedIn
               </a>
               <span className="opacity-40">•</span>
-              <a
-                href="https://www.instagram.com/abdelrahman15102/"
-                target="_blank"
-                rel="noreferrer"
-                className="underline underline-offset-4 hover:opacity-80"
-              >
-                instagram
+              <a href="https://www.instagram.com/abdelrahman15102/" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:opacity-80">
+                Instagram
               </a>
             </div>
           </div>
@@ -156,7 +126,7 @@ export default function ContactSection() {
   );
 }
 
-/* ---------- UI bits (inputs) ---------- */
+/* ---------- UI bits ---------- */
 
 function Field({
   label,
