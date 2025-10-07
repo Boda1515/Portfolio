@@ -79,7 +79,11 @@ const Shuffle: React.FC<ShuffleProps> = ({
   useGSAP(
     () => {
       if (!ref.current || !text || !fontsLoaded) return;
-      if (respectReducedMotion && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (
+        respectReducedMotion &&
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
         onShuffleComplete?.();
         return;
       }
@@ -115,7 +119,9 @@ const Shuffle: React.FC<ShuffleProps> = ({
         }
         try {
           splitRef.current?.revert();
-        } catch {}
+        } catch {
+          /* ignore */
+        }
         splitRef.current = null;
         playingRef.current = false;
       };
@@ -150,7 +156,8 @@ const Shuffle: React.FC<ShuffleProps> = ({
           Object.assign(wrap.style, { width: w + 'px' });
 
           const inner = document.createElement('span');
-          inner.className = 'inline-block whitespace-nowrap will-change-transform origin-left transform-gpu';
+          inner.className =
+            'inline-block whitespace-nowrap will-change-transform origin-left transform-gpu';
 
           parent.insertBefore(wrap, ch);
           wrap.appendChild(inner);
@@ -186,7 +193,7 @@ const Shuffle: React.FC<ShuffleProps> = ({
           }
 
           gsap.set(inner, { x: startX, force3D: true });
-          if (colorFrom) (inner.style as any).color = colorFrom;
+          if (colorFrom) (inner.style as React.CSSProperties).color = colorFrom;
 
           inner.setAttribute('data-final-x', String(finalX));
           inner.setAttribute('data-start-x', String(startX));
@@ -204,7 +211,9 @@ const Shuffle: React.FC<ShuffleProps> = ({
           if (!strip) return;
           const kids = Array.from(strip.children) as HTMLElement[];
           for (let i = 1; i < kids.length - 1; i++) {
-            kids[i].textContent = scrambleCharset.charAt(Math.floor(Math.random() * scrambleCharset.length));
+            kids[i].textContent = scrambleCharset.charAt(
+              Math.floor(Math.random() * scrambleCharset.length)
+            );
           }
         });
       };
@@ -282,7 +291,8 @@ const Shuffle: React.FC<ShuffleProps> = ({
               },
               d
             );
-            if (colorFrom && colorTo) tl.fromTo(strip, { color: colorFrom }, { color: colorTo, duration, ease }, d);
+            if (colorFrom && colorTo)
+              tl.fromTo(strip, { color: colorFrom }, { color: colorTo, duration, ease }, d);
           });
         }
 
@@ -350,7 +360,8 @@ const Shuffle: React.FC<ShuffleProps> = ({
     }
   );
 
-  const baseTw = 'inline-block whitespace-normal break-words will-change-transform uppercase text-[4rem] leading-none';
+  const baseTw =
+    'inline-block whitespace-normal break-words will-change-transform uppercase text-[4rem] leading-none';
   const commonStyle: React.CSSProperties = {
     textAlign,
     fontFamily: `'Press Start 2P', sans-serif`,
@@ -358,9 +369,9 @@ const Shuffle: React.FC<ShuffleProps> = ({
   };
 
   const classes = `${baseTw} ${ready ? 'visible' : 'invisible'} ${className}`.trim();
-  const Tag = (tag || 'p') as keyof JSX.IntrinsicElements;
+  const Tag = tag || 'p';
 
-  return React.createElement(Tag, { ref: ref as any, className: classes, style: commonStyle }, text);
+  return React.createElement(Tag, { ref: ref as React.RefObject<HTMLElement>, className: classes, style: commonStyle }, text);
 };
 
 export default Shuffle;
