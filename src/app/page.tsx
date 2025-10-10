@@ -104,21 +104,20 @@ const certificates = [
 
 export default function Home() {
   return (
-    <main className="px-4 sm:px-6 md:px-10">
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen flex flex-col items-center justify-center gap-4 sm:gap-6 px-2 sm:px-4 md:px-6 text-center"
-      >
-        <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-full overflow-hidden">
+    <main className="px-4 sm:px-6 md:px-10 pt-20 sm:pt-24">
+      {/* Home Section */}
+    <section id="home" className=" relative mx-auto max-w-7xl min-h-[calc(100svh-5rem)] sm:min-h-[calc(100svh-6rem)] flex items-center justify-center px-6 text-center">
+      <div className="space-y-3 sm:space-y-4">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight">
           <Shuffle
+            tag="span"                         
             text="Abdelrahman Hany"
+            className="!text-4xl sm:!text-5xl md:!text-7xl !leading-none"
             shuffleDirection="right"
             duration={0.35}
             animationMode="evenodd"
             shuffleTimes={1}
             ease="power3.out"
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl break-words"
             stagger={0.03}
             threshold={0.1}
             triggerOnce={true}
@@ -138,39 +137,55 @@ export default function Home() {
           />{" "}
           Engineer
         </span>
-      </section>
+      </div>
+    </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 pt-8 sm:pt-10 pb-12 sm:pb-16">
         <AboutSection />
-      </section>
 
       {/* Skills Section */}
-      <section id="skills" className="min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] items-center px-2 sm:px-4 md:px-6 py-8 sm:py-12">
+      <section
+        id="skills"
+        className={`
+          !scroll-mt-[calc(50vh-5rem)]   /* Centers the section when clicked */
+          mx-auto 
+          w-[96%] sm:w-[94%] md:w-[92%] lg:w-[86%] xl:max-w-[1000px]
+          pb-20 sm:pb-24 md:pb-28 lg:pb-32  /* Adds bottom padding */
+        `}
+      >
         <h2 className="mb-6 sm:mb-8 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
           Skills
         </h2>
-        <div className="mx-auto max-w-5xl">
-          <div className="relative h-[100px] sm:h-[120px] md:h-[150px] lg:h-[180px] my-6 sm:my-8 md:my-10 overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 bg-black/30">
-            <LogoLoop
-              logos={techLogos}
-              speed={80}
-              direction="left"
-              logoHeight={60}
-              gap={24}
-              pauseOnHover
-              scaleOnHover
-              fadeOut
-              fadeOutColor="transparent"
-              ariaLabel="Technology partners"
-              className="py-0"
-            />
-          </div>
-        </div>
+
+        <LogoLoop
+          logos={techLogos}
+          speed={22}
+          logoHeight={90}
+          direction="left"
+          pauseOnHover
+          scaleOnHover
+          fadeOut={false}
+          ariaLabel="Technology skills"
+          className="
+            relative overflow-hidden rounded-2xl border border-white/10 bg-black/30
+            py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12
+            [--logoloop-logoHeight:80px]
+            sm:[--logoloop-logoHeight:120px]
+            md:[--logoloop-logoHeight:140px]
+            lg:[--logoloop-logoHeight:160px]
+            xl:[--logoloop-logoHeight:180px]
+            [--logoloop-gap:48px]
+            sm:[--logoloop-gap:56px]
+            md:[--logoloop-gap:64px]
+            lg:[--logoloop-gap:72px]
+            xl:[--logoloop-gap:80px]
+          "
+        />
       </section>
 
+
       {/* Certifications Section */}
-      <section id="certifications" className="min-h-[40vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 py-8 sm:py-12">
+      <section id="certifications" className="min-h-[10vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 py-8 sm:py-12">
         <h2 className="mb-6 sm:mb-8 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
           Certifications
         </h2>
@@ -190,10 +205,16 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section 
-        id="experience" 
-        className="min-h-[70vh] sm:min-h-[80vh] px-2 sm:px-4 pt-16 sm:pt-24 md:pt-32 scroll-mt-20 sm:scroll-mt-28 md:scroll-mt-32"
-      >
+      <section id="experience" 
+className="
+  min-h-[70vh] sm:min-h-[80vh]
+  px-2 sm:px-4
+  pt-16 sm:pt-24 md:pt-32
+  scroll-mt-[calc(50vh-6rem)]
+  sm:scroll-mt-[calc(45vh-5rem)]
+  md:scroll-mt-[calc(40vh-4rem)]
+"
+>
         <h2 className="mb-8 sm:mb-10 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
           Experience
         </h2>
@@ -203,10 +224,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section 
-        id="projects" 
-        className="px-4 sm:px-6 mt-16 sm:mt-20 md:mt-28 scroll-mt-20 sm:scroll-mt-28 md:scroll-mt-32"
-      >
+      <section id="projects" className="px-4 sm:px-6 mt-16 sm:mt-20 md:mt-28 scroll-mt-20 sm:scroll-mt-28 md:scroll-mt-32">
         <div className="mx-auto max-w-6xl min-h-[70vh] sm:min-h-[80vh] flex flex-col items-center justify-center text-center gap-8 sm:gap-10 py-10 sm:py-12 md:py-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">
             Projects

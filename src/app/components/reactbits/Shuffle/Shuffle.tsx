@@ -361,7 +361,8 @@ const Shuffle: React.FC<ShuffleProps> = ({
   );
 
   const baseTw =
-    'inline-block whitespace-normal break-words will-change-transform uppercase text-[4rem] leading-none';
+  
+     'inline-block whitespace-normal break-words will-change-transform leading-none';
   const commonStyle: React.CSSProperties = {
     textAlign,
     fontFamily: `'Press Start 2P', sans-serif`,

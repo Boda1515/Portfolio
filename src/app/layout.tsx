@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import ResponsiveGlassHeader from "./components/ResponsiveGlassHeader";
+
 import "./globals.css";
-import GooeyNav from "./components/reactbits/GooeyNav/GooeyNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,38 +27,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
-      <body 
-        className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white`}
-      >
-        {/* Navigation - Scaled down on mobile */}
-        <header className="sticky top-2 sm:top-3 md:top-4 z-50 flex justify-center px-2 sm:px-4">
-          <div className="scale-75 sm:scale-90 md:scale-100 origin-top">
-            <GooeyNav
-              items={[
-                { label: "Home", href: "#home" },
-                { label: "About", href: "#about" },
-                { label: "Skills", href: "#skills" },
-                { label: "Certifications", href: "#certifications" },
-                { label: "Experience", href: "#experience" },
-                { label: "Projects", href: "#projects" },
-                { label: "Contact", href: "#contact" },
-              ]}
-              particleCount={15}
-              particleDistances={[90, 10]}
-              particleR={100}
-              initialActiveIndex={0}
-              animationTime={600}
-              timeVariance={120}
-              colors={[3, 0, 5]}
-            />
-          </div>
-        </header>
-
+      <body className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white`} >
+        {/* Header */}
+        <ResponsiveGlassHeader /> 
         {/* Page content */}
-        <main className="mx-auto w-full max-w-7xl px-0 sm:px-2 md:px-4">
-          {children}
-        </main>
-
+        {children}
         {/* Footer */}
         <footer className="mt-12 sm:mt-16 border-t border-black/10 dark:border-white/10">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 py-6 sm:py-8">
@@ -95,6 +69,35 @@ export default function RootLayout({
           </div>
         </footer>
       </body>
+      
     </html>
   );
 }
+
+
+
+
+
+
+// Headers test:
+        {/* <header className="sticky top-2 sm:top-3 md:top-4 z-50 flex justify-center px-2 sm:px-4"> */}
+          {/* <div className="scale-75 sm:scale-90 md:scale-100 origin-top">
+            <GooeyNav
+              items={[
+                { label: "Home", href: "#home" },
+                { label: "About", href: "#about" },
+                { label: "Skills", href: "#skills" },
+                { label: "Certifications", href: "#certifications" },
+                { label: "Experience", href: "#experience" },
+                { label: "Projects", href: "#projects" },
+                { label: "Contact", href: "#contact" },
+              ]}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={120}
+              colors={[3, 0, 5]}
+            />
+          </div> */}

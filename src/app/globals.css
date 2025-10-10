@@ -62,6 +62,22 @@ section[id] {
   scroll-margin-block-start: 20vh; /* ~20% of viewport as top margin offset */
 }
 
+section#experience {
+  scroll-margin-block-start: 1vh !important;
+}
+
+/* Center the Projects section nicely when scrolled into view */
+section#projects {
+  scroll-margin-block-start: 5vh !important;
+}
+
+/* Optional – adjust for smaller screens */
+@media (max-width: 640px) {
+  section#projects {
+    scroll-margin-block-start: 35vh !important;
+  }
+}
+
 /* Galaxy-style nav */
 .galaxy-nav {
   position: relative;

@@ -257,7 +257,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           "[--logoloop-logoHeight:28px]",
           "[--logoloop-fadeColorAuto:#ffffff]",
           "dark:[--logoloop-fadeColorAuto:#0b0b0b]",
-          scaleOnHover && "py-[calc(var(--logoloop-logoHeight)*0.1)]",
+          scaleOnHover && "py-[calc(var(--logoloop-logoHeight)*0.15)]",
           className
         ),
       [scaleOnHover, className]
@@ -278,34 +278,37 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         const content = isNodeItem ? (
           <span
             className={cx(
-              "inline-flex items-center",
+              "inline-flex items-center justify-center",
+              "h-[var(--logoloop-logoHeight)] w-[var(--logoloop-logoHeight)]",
               "motion-reduce:transition-none",
               scaleOnHover &&
-                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120"
+                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
             )}
             aria-hidden={!!item.href && !item.ariaLabel}
           >
             {item.node}
           </span>
         ) : (
-          <Image
+          <div 
             className={cx(
-              "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
-              "[-webkit-user-drag:none] pointer-events-none",
-              "[image-rendering:-webkit-optimize-contrast]",
+              "h-[var(--logoloop-logoHeight)] w-[var(--logoloop-logoHeight)] flex items-center justify-center",
               "motion-reduce:transition-none",
               scaleOnHover &&
-                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120"
+                "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-110"
             )}
-            src={item.src}
-            alt={item.alt ?? ""}
-            title={item.title}
-            width={item.width ?? 100}
-            height={item.height ?? 40}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-          />
+          >
+            <Image
+              className="!h-full !w-full block object-contain [-webkit-user-drag:none] pointer-events-none"
+              src={item.src}
+              alt={item.alt ?? ""}
+              title={item.title}
+              width={200}
+              height={200}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
+          </div>
         );
 
         const itemAriaLabel =

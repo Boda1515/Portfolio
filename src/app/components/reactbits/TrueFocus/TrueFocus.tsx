@@ -11,6 +11,7 @@ interface TrueFocusProps {
   glowColor?: string;
   animationDuration?: number;
   pauseBetweenAnimations?: number;
+  className?: string;  
 }
 
 interface FocusRect {
@@ -27,7 +28,8 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   borderColor = 'green',
   glowColor = 'rgba(0, 255, 0, 0.6)',
   animationDuration = 0.5,
-  pauseBetweenAnimations = 1
+  pauseBetweenAnimations = 1,
+  className = 'text-xl sm:text-2xl md:text-3xl font-semibold' // sensible default, smaller than before
 }) => {
   const words = sentence.split(' ');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -87,7 +89,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
             ref={el => {
               wordRefs.current[index] = el;
             }}
-            className="relative text-[3rem] font-black cursor-pointer"
+            className="relative text-[2rem] font-black cursor-pointer"
             style={
               {
                 filter: manualMode
