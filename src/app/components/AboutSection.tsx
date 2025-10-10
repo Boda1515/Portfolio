@@ -93,7 +93,7 @@ export default function AboutSection() {
 
               <div className="mt-10">
                 <a
-                  href="/Portfolio/Abdelrahman-Hany-Marzouk-Cloud-Data-Engineer.pdf"
+                  href="https://drive.google.com/file/d/1R-kI1lT77BCQimmwUSWRpzbUiTZ2Z39i/view?usp=drive_link"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-cyan-200 hover:bg-cyan-400/20 hover:border-cyan-300/60 transition"
