@@ -63,7 +63,7 @@ export default function AboutSection() {
                 "
               >
                 <Image
-                  src="/Abdelrahman.jpg"
+                  src="/Portfolio/Abdelrahman.jpg"
                   alt="Abdelrahman Hany portrait"
                   fill
                   priority
@@ -93,7 +93,7 @@ export default function AboutSection() {
 
               <div className="mt-10">
                 <a
-                  href="/Abdelrahman-Hany-Marzouk-Cloud-Data-Engineer.pdf"
+                  href="/Portfolio/Abdelrahman-Hany-Marzouk-Cloud-Data-Engineer.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-cyan-200 hover:bg-cyan-400/20 hover:border-cyan-300/60 transition"
