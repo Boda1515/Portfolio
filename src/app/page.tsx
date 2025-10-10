@@ -159,7 +159,7 @@ export default function Home() {
 
         <LogoLoop
           logos={techLogos}
-          speed={22}
+          speed={50}
           logoHeight={90}
           direction="left"
           pauseOnHover
